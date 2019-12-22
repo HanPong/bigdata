@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\config",
     "\\moments",
     "\\static",
     "\\templates"
   ],
-  "SelectedNode": "\\config\\dev.py",
+  "SelectedNode": "\\config",
   "PreviewInSolutionExplorer": false
 }
