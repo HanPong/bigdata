@@ -1,0 +1,71 @@
+{% extends "base.html"%}
+
+{% block content %}
+<!--HTML-->
+<div id="chart2_demo" style="height:500px;padding:10px;"></div>
+<!--JS-->
+<script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+<script src="https://magicbox.bk.tencent.com/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+<script type="text/javascript">
+    //chart2_demo_js_start
+    function createEBarChart(conf) {
+        var myChart = echarts.init(document.getElementById(conf.selector));
+        var legendData = [];//存放变量的name
+        for (var i = 0; i < conf.data.series.length; i++) {
+            legendData.push(conf.data.series[i].name);
+        }
+        myChart.setOption({
+            legend: {
+                y: 'bottom',
+                data: legendData
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            calculable: true,
+            yAxis: [
+                {
+                    type: 'value',
+                    splitArea: { show: true }
+                }
+            ],
+            xAxis: conf.data.xAxis,
+            series: conf.data.series
+        })
+    }
+    function initEBarChart(conf) {
+        $.ajax({
+            url: conf.url,
+            type: 'GET',
+            dataType: conf.dataType,
+            success: function (res) {
+                //获取数据成功
+                if (res.result) {
+                    createEBarChart({
+                        selector: conf.containerId, // 图表容器
+                        data: res.data, // 图表数据
+                    });
+                }
+            }
+        })
+    }
+    $(function () {
+        initEBarChart({
+            url: '/stats',
+            dataType: 'json',
+            containerId: 'chart2_demo'
+        });
+    });
+//chart2_demo_js_end
+</script>
+{% endblock %}}

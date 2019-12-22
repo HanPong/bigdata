@@ -32,5 +32,7 @@ urlpatterns = [
     path('user/update', update_user),
     path('like', like),
     path('comment', comment),
-    path('comment/delete', delete_comment)
+    path('comment/delete', delete_comment),
+    path('report',report),
+    path('stats',stats)
 ]

@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
 from .models import WeChatUser, Status, User, Reply
+from blueking.component.shortcuts import get_client_by_request
 
 
 def home(request):
@@ -64,6 +65,8 @@ def submit_post(request):
     return render(request, "my_post.html")
 
 
+
+
 def register(request):
     try:
         username, password, email = [request.POST.get(key) for key in ("username", "password", "email")]
@@ -113,6 +116,13 @@ def like(request):
         liked.delete()
     else:
         Reply.objects.create(author=user, status=Status.objects.get(id=status_id), type="0")
+        client = get_client_by_request(request)
+        client.cmsi.send_mail(receiver=Status.objects.get(id=status_id).user.email,
+                              title="点赞通知",
+                              content="{}赞了你的朋友圈状态{}".format(user,Status.objects.get(id=status_id).text))
+
+                              
+    
     return JsonResponse({"result": True})
 
 @login_required
@@ -130,3 +140,24 @@ def delete_comment(request):
     comment_id = request.POST.get("comment_id")
     Reply.objects.filter(id=comment_id).delete()
     return JsonResponse({"result": True})
+
+@login_required
+def report(request):
+    return render(request,"report.html")
+
+def stats(request):
+    statuses=Status.objects.all()
+    users_list=statuses.values_list("user__user__username")
+    counter=counter(user_list)
+    top_ten=counter.most_common(10)
+    data={"data":{"xAxis":[{
+                   "type":"category",
+                   "data":[user[0][0] for user in top_ten]
+
+
+                        }],
+                  },
+          "result":True,
+          "code":0
+          }
+    return JsonResponse(data)
