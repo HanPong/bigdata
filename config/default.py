@@ -23,6 +23,7 @@ from blueapps.conf.default_settings import *  # noqa
 INSTALLED_APPS += (
     'home_application',
     'mako_application',
+    'moments',
 )
 
 # 这里是默认的中间件，大部分情况下，不需要改动
@@ -93,6 +94,9 @@ MAKO_DEFAULT_FILTERS = ['h']
 
 # BKUI是否使用了history模式
 IS_BKUI_HISTORY_MODE = False
+
+# 是否需要对AJAX弹窗登录强行打开
+IS_AJAX_PLAIN_MODE = False
 
 
 """

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponseRedirect, JsonResponse
+from django.conf import settings
+
 try:
     from django.urls import reverse
 except Exception:
     from django.core.urlresolvers import reverse
 
 from blueapps.account.utils.http import build_redirect_url
-from blueapps.core.exceptions import RioVerifyError
+from blueapps.core.exceptions import RioVerifyError, BkJwtVerifyError
 
 
 class ResponseHandler(object):
@@ -19,6 +21,11 @@ class ResponseHandler(object):
         self._settings = _settings
 
     def build_401_response(self, request):
+
+        # 强制要求进行跳转的方式
+        if getattr(settings, 'IS_AJAX_PLAIN_MODE', False) and request.is_ajax():
+            return self._build_ajax_401_response(request)
+
         # Just redirect to PAAS-LOGIN-PLATRORM no matter whether request.is_ajax
         if self._conf.HAS_PLAIN:
             if request.is_ajax():
@@ -114,5 +121,16 @@ class ResponseHandler(object):
             'result': False,
             'code': RioVerifyError.ERROR_CODE,
             'message': u'您的登陆请求无法经智能网关正常检测，请与管理人员联系'
+        }
+        return JsonResponse(context, status=401)
+
+    def build_bk_jwt_401_response(self, request):
+        """
+        BK_JWT鉴权异常
+        """
+        context = {
+            "result": False,
+            "code": BkJwtVerifyError.ERROR_CODE,
+            "message": u"您的登陆请求无法经BK JWT检测，请与管理人员联系"
         }
         return JsonResponse(context, status=401)

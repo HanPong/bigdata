@@ -19,6 +19,8 @@ class UserAgentMiddleware(object):
         request.is_wechat = lambda: bool(settings.RE_WECHAT.search(
             request.META.get('HTTP_USER_AGENT', '')) and not request.is_rio())
 
+        request.is_bk_jwt = lambda: bool(request.META.get('HTTP_X_BKAPI_JWT', ''))
+
 
 class SiteUrlconfMiddleware(object):
     top_module = 'conf.sites'

@@ -25,6 +25,9 @@ class LoginRequiredMiddleware(MiddlewareMixin):
         if hasattr(request, 'is_wechat') and request.is_wechat():
             return None
 
+        if hasattr(request, 'is_bk_jwt') and request.is_bk_jwt():
+            return None
+
         if getattr(view, 'login_exempt', False):
             return None
 

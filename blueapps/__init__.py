@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-VERSION = '2.4.0'
+VERSION = '3.1.0'
 __version__ = VERSION
 
 

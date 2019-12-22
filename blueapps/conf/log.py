@@ -5,6 +5,8 @@ import random
 
 from blueapps.conf.default_settings import BASE_DIR, APP_CODE
 
+APP_CODE = os.environ.get('APP_ID', APP_CODE)
+
 
 def get_logging_config_dict(settings_module):
     log_class = 'logging.handlers.RotatingFileHandler'

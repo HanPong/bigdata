@@ -10,3 +10,6 @@ if hasattr(ConfFixture, 'WEIXIN_BACKEND'):
 
 if hasattr(ConfFixture, 'RIO_BACKEND'):
     RioBackend = load_backend(ConfFixture.RIO_BACKEND)
+
+if hasattr(ConfFixture, 'BK_JWT_BACKEND'):
+    BkJwtBackend = load_backend(ConfFixture.BK_JWT_BACKEND)

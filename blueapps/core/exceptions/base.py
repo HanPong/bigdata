@@ -104,6 +104,13 @@ class RioVerifyError(ClientBlueException):
     STATUS_CODE = 405
 
 
+class BkJwtVerifyError(ClientBlueException):
+
+    MESSAGE = "登陆请求经JWT检测失败"
+    ERROR_CODE = "40503"
+    STATUS_CODE = 401
+
+
 class DatabaseError(ServerBlueException):
 
     MESSAGE = "数据库异常"

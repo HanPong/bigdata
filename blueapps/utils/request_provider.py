@@ -72,6 +72,9 @@ class RequestProvider(MiddlewareMixin):
             not request.is_rio()
         )
 
+        # JWT请求
+        request.is_bk_jwt = lambda: bool(request.META.get('HTTP_X_BKAPI_JWT', ''))
+
         self._request_pool[get_ident()] = request
         return None
 

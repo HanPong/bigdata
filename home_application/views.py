@@ -23,9 +23,3 @@ def contact(request):
     联系页
     """
     return render(request, 'home_application/contact.html')
-
-def helloworld(request):
-    """
-    联系页
-    """
-    return render(request, 'home_application/helloworld.html')
