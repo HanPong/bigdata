@@ -1,12 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\blueapps\\account\\components",
     "\\config",
     "\\moments",
     "\\static",
     "\\templates"
   ],
-  "SelectedNode": "\\moments\\__init__.py",
+  "SelectedNode": "\\config\\dev.py",
   "PreviewInSolutionExplorer": false
 }

@@ -30,7 +30,7 @@ DATABASES = {
         'NAME': 'mysql2',
         'USER': 'root',
         'PASSWORD': 'HANPENG-1998',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     },
 }
