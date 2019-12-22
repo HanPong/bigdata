@@ -68,11 +68,11 @@ def register(request):
     try:
         username, password, email = [request.POST.get(key) for key in ("username", "password", "email")]
 
-        user = User(username=username, email=email)
-        user.set_password(password)
-        user.save()
+        #user = User(username=username, email=email)
+        #user.set_password(password)
+        #user.save()
 
-        WeChatUser.objects.create(user=user)
+        WeChatUser.objects.create(user=request.user,email=email)
     except Exception as err:
         result = False
         message = str(err)
@@ -85,14 +85,14 @@ def register(request):
 @login_required
 def update_user(request):
     try:
-        kwargs = {key:request.POST.get(key) for key in ("motto", "region", "pic") if request.POST.get(key)}
+        kwargs = {key:request.POST.get(key) for key in ("motto", "region", "pic","email") if request.POST.get(key)}
         WeChatUser.objects.filter(user=request.user).update(**kwargs)
 
-        email = request.POST.get("email")
-        if email:
-            dj_user = User.objects.get(username=request.user.username)
-            dj_user.email = email
-            dj_user.save()
+        #email = request.POST.get("email")
+        #if email:
+        #   dj_user = User.objects.get(username=request.user.username)
+        #    dj_user.email = email
+         #   dj_user.save()
 
     except Exception as err:
         result = False
