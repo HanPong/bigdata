@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\blueapps\\account\\components",
-    "\\blueapps\\account\\components\\bk_token",
-    "\\blueking\\component"
+    ""
   ],
-  "SelectedNode": "\\runtime.txt",
+  "SelectedNode": "\\config",
   "PreviewInSolutionExplorer": false
 }
