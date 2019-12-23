@@ -23,9 +23,9 @@ DATABASES.update(
     {
         'default': {
             'ENGINE':'django.db.backends.mysql',
-            'NAME':'3170932030_hanpeng_o',  # 数据库名
-            'USER':'hanpeng',  # 数据库用户
-            'PASSWORD':'F7FcqWZKmEX5YzBe',  # 数据库密码
+            'NAME':'wechat',  # 数据库名
+            'USER':'root',  # 数据库用户
+            'PASSWORD':'wechat',  # 数据库密码
             'HOST':'10.0.2.8',  # 数据库主机
             'PORT':'3306',  # 数据库端口
         },
