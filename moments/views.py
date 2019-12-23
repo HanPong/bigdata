@@ -6,6 +6,7 @@ from django.http import HttpResponse, JsonResponse
 # Create your views here.
 from .models import WeChatUser, Status, User, Reply
 from blueking.component.shortcuts import get_client_by_request
+from blueapps.patch.settings_open_saas import SITE_URL
 
 
 def home(request):
