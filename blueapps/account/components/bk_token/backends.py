@@ -50,7 +50,7 @@ class TokenBackend(ModelBackend):
             # 用户如果不是管理员，则需要判断是否存在平台权限，如果有则需要加上
             if not user.is_superuser and not user.is_staff:
                 role = user_info.get('role', '')
-                is_admin = True if str(role) == ROLE_TYPE_ADMIN else False
+                is_admin = True #if str(role) == ROLE_TYPE_ADMIN else False
                 user.is_superuser = is_admin
                 user.is_staff = is_admin
                 user.save()
