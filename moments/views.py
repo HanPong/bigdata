@@ -51,7 +51,7 @@ def submit_post(request):
 
     if uploaded_file:
         name = uploaded_file.name
-        with open("./moments/static/image/{}".format(name), 'wb') as handler:
+        with open("./static/image/{}".format(name), 'wb') as handler:
             for block in uploaded_file.chunks():
                 handler.write(block)
     else:
@@ -61,7 +61,7 @@ def submit_post(request):
     if text:
         status = Status(user=user, text=text, pics=name)
         status.save()
-        return redirect("/status")
+        return redirect("{}status".format(SITE_URL))
 
     return render(request, "my_post.html")
 
