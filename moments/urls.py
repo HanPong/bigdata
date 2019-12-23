@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from moments.views import home, show_user, show_status, submit_post, register, update_user, like, comment, \
-    delete_comment,report,stats
+    delete_comment, report, stats
 from django.contrib.auth.views import LoginView, LogoutView
 
 
@@ -33,6 +33,6 @@ urlpatterns = [
     path('like', like),
     path('comment', comment),
     path('comment/delete', delete_comment),
-    path('report',report),
-    path('stats',stats)
+    path('report', report),
+    path('stats', stats)
 ]
