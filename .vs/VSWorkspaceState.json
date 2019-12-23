@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\config",
     "\\moments",
     "\\moments\\templates"
   ],
-  "SelectedNode": "\\moments\\views.py",
+  "SelectedNode": "\\moments\\templates\\homepage.html",
   "PreviewInSolutionExplorer": false
 }
